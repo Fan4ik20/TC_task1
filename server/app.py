@@ -13,17 +13,20 @@ class DateHttpHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def _get_formatted_time(self) -> str:
-        # If local address == request address.
-        if self.server.server_address[0] == self.client_address[0]:
-            return datetime.now().strftime("%d:%m:%Y %H:%M:%S")
-
         return get_formatted_time(get_timezone(self.client_address[0]))
 
     def _send_date(self) -> None:
         clients_date: str = self._get_formatted_time()
 
+        if (clients_timezone := get_timezone(self.client_address[0])) is None:
+            clients_timezone = (
+                'Go to your computer date settings and look,'
+                ' you are connected via local address'
+            )
+
         self.wfile.write((
             f'Get connection from {self.client_address[0]}<br>'
+            f'Your timezone is - {clients_timezone}<br>'
             f'Your time is - {clients_date}<br>'
         ).encode())
 
@@ -35,7 +38,7 @@ class DateHttpHandler(BaseHTTPRequestHandler):
 
 class DateHttpServer:
     def __init__(
-            self, host: str = 'localhost', port: int = 65432,
+            self, host: str = '0.0.0.0', port: int = 65432,
             server: Type[HTTPServer] = HTTPServer,
             handler: Type[BaseHTTPRequestHandler] = DateHttpHandler
     ) -> None:
