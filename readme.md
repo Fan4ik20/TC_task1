@@ -28,6 +28,12 @@ DockerFile
 ## Zadanie 4
 DockerHub
 - https://hub.docker.com/repository/docker/fan4ik/zadanie1
+### Commands
+- `sudo apt-get install qemu-user-static`
+- `docker buildx create --name zadanie1`
+- `docker buildx use zadanie1`
+- `docker buildx build -t fan4ik/zadanie1:bx
+--platform linux/amd64,linux/arm64,linux/arm/v7 --push .`
 
 ## Client Side  
 ![It Works](./readme_assets/it_works.png)

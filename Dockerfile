@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+# Author Mark Zaianchkovskyi
 
 FROM python:3.10-slim-buster
 
