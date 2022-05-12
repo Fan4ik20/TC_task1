@@ -7,6 +7,13 @@ from service import get_formatted_time, get_timezone
 
 
 class DateHttpHandler(BaseHTTPRequestHandler):
+    """
+    This is a basic HttpRequest handler.
+    In it, I have redefined the behaviour of the GET method
+    so that it meets the condition of the assignment.
+
+    """
+
     def _set_headers(self) -> None:
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
@@ -16,7 +23,7 @@ class DateHttpHandler(BaseHTTPRequestHandler):
         return get_formatted_time(get_timezone(self.client_address[0]))
 
     def _send_date(self) -> None:
-        clients_date: str = self._get_formatted_time()
+        clients_time: str = self._get_formatted_time()
 
         if (clients_timezone := get_timezone(self.client_address[0])) is None:
             clients_timezone = (
@@ -27,7 +34,7 @@ class DateHttpHandler(BaseHTTPRequestHandler):
         self.wfile.write((
             f'Get connection from {self.client_address[0]}<br>'
             f'Your timezone is - {clients_timezone}<br>'
-            f'Your time is - {clients_date}<br>'
+            f'Your time is - {clients_time}<br>'
         ).encode())
 
     def do_GET(self) -> None:
@@ -37,6 +44,8 @@ class DateHttpHandler(BaseHTTPRequestHandler):
 
 
 class DateHttpServer:
+    """Basic Http Server"""
+
     def __init__(
             self, host: str = '0.0.0.0', port: int = 65432,
             server: Type[HTTPServer] = HTTPServer,

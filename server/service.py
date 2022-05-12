@@ -4,6 +4,11 @@ import pytz
 
 
 def get_timezone(ip_: str) -> str | None:
+    """
+    This function call the api, which accept clients ip
+    and returns some information about its location.
+    """
+
     response: dict = requests.get(
         f'https://ipapi.co/{ip_}/json/'
     ).json()
