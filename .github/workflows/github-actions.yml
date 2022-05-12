@@ -2,7 +2,7 @@ name: GitHub Action next2 flow to Docker hub
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   build-push-images:
