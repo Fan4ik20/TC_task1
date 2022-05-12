@@ -25,7 +25,7 @@ DockerFile
   - `lets inspect` | `lets history`  
 <br>
 
-## Zadanie 4
+## Zadanie 4 + Actions
 DockerHub
 - https://hub.docker.com/repository/docker/fan4ik/zadanie1
 ### Commands
