@@ -14,3 +14,4 @@ RUN python -m pip install -r requirements.txt
 COPY ./server/. .
 
 CMD ["python3", "-u", "app.py"]
+
