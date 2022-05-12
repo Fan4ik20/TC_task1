@@ -15,5 +15,14 @@ commands:
       cmd: |
        sudo docker run -p 65432:65432 -d --name date_server_container date_server
     rm:
-      description: "Deletes container"
+      description: Deletes container
       cmd: sudo docker rm date_server_container -f
+    logs:
+      description: Shows container's logs
+      cmd: sudo docker logs date_server_container
+    inspect:
+      description: Inspects server image
+      cmd: sudo docker image inspect date_server
+    history:
+      description: Shows server image history
+      cmd: sudo docker history date_server
