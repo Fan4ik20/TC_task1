@@ -1,0 +1,19 @@
+shell: /bin/sh
+
+commands:
+    build-and-run:
+      description: Build and run docker container
+      cmd: |
+        sudo docker build -t date_server . && \
+        sudo docker run -p 65432:65432 -d --name date_server_container date_server
+    build:
+      description: Builds server image
+      cmd: sudo docker build -t date_server .
+        
+    run: 
+      description: Run server container
+      cmd: |
+       sudo docker run -p 65432:65432 -d --name date_server_container date_server
+    rm:
+      description: "Deletes container"
+      cmd: sudo docker rm date_server_container -f
